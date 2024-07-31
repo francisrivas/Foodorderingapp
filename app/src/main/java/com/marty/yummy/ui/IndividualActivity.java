@@ -13,22 +13,19 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.marty.yummy.R;
 import com.marty.yummy.model.CartItem;
 import com.marty.yummy.model.FoodDetails;
 import com.marty.yummy.utility.GlideApp;
 import com.marty.yummy.viewmodel.FoodDetailViewModel;
-
 import java.util.List;
 
 public class IndividualActivity extends AppCompatActivity implements View.OnClickListener {
-
     private FoodDetailViewModel foodDetailViewModel;
     Observer<FoodDetails> foodDetailObserver;
     private ImageView iFoodImage;
-    private TextView tName,tCost,tQuantity,tTotalCost,tCartQuantity;
+    private TextView tName, tCost, tQuantity, tTotalCost, tCartQuantity;
     private Toolbar cartView;
     Observer<List<CartItem>> cartObserver;
     private FoodDetails duplicateFoodDetails;
@@ -38,18 +35,18 @@ public class IndividualActivity extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_layout);
         ActionBar actionBar = getSupportActionBar();
-        if(actionBar!=null){
+        if (actionBar != null) {
             actionBar.setHomeAsUpIndicator(R.drawable.ic_back);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
         String foodId = "";
         Bundle bundle = getIntent().getExtras();
-        if(bundle!=null){
-            if(bundle.containsKey("name")) {
+        if (bundle != null) {
+            if (bundle.containsKey("name")) {
                 foodId = bundle.getString("name");
             }
         }
-        if(foodId !=null && !foodId.isEmpty()) {
+        if (foodId != null && !foodId.isEmpty()) {
             iFoodImage = findViewById(R.id.i_food_image);
             tName = findViewById(R.id.t_name);
             tCost = findViewById(R.id.t_cost);
@@ -63,7 +60,6 @@ public class IndividualActivity extends AppCompatActivity implements View.OnClic
             tCartQuantity = findViewById(R.id.t_cart_count);
             AppCompatButton bCart = findViewById(R.id.b_cart);
             bCart.setOnClickListener(this);
-
             foodDetailViewModel = ViewModelProviders.of(this).get(FoodDetailViewModel.class);
             foodDetailViewModel.subscribeForFoodDetails(foodId);
             foodDetailObserver = new Observer<FoodDetails>() {
@@ -83,17 +79,9 @@ public class IndividualActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
-    /*@Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.home){
-            onBackPressed();
-        }
-        return true;
-    }*/
-
     private void updateUI(FoodDetails foodDetails) {
         duplicateFoodDetails = foodDetails;
-        if(foodDetails==null){
+        if (foodDetails == null) {
             return;
         }
         tName.setText(foodDetails.getName());
@@ -108,41 +96,43 @@ public class IndividualActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View view) {
         int id = view.getId();
-        switch (id){
+        switch (id) {
             case R.id.i_minus:
-                if(duplicateFoodDetails.getQuantity()!=0) {
-                    duplicateFoodDetails.setQuantity(duplicateFoodDetails.getQuantity()-1);
+                if (duplicateFoodDetails.getQuantity() != 0) {
+                    duplicateFoodDetails.setQuantity(duplicateFoodDetails.getQuantity() - 1);
                     tQuantity.setText(String.valueOf(duplicateFoodDetails.getQuantity()));
                 }
                 foodDetailViewModel.updateCart(duplicateFoodDetails);
                 break;
             case R.id.i_plus:
-                duplicateFoodDetails.setQuantity(duplicateFoodDetails.getQuantity()+1);
+                duplicateFoodDetails.setQuantity(duplicateFoodDetails.getQuantity() + 1);
                 tQuantity.setText(String.valueOf(duplicateFoodDetails.getQuantity()));
                 foodDetailViewModel.updateCart(duplicateFoodDetails);
                 break;
             case R.id.b_cart:
-                startActivity(new Intent(this,CartActivity.class));
+                startActivity(new Intent(this, CartActivity.class));
                 break;
-
+            default:
+                // Manejar casos no previstos
+                break;
         }
     }
 
     private void updateCartUI(List<CartItem> cartItems) {
-        if(cartItems!=null && cartItems.size()>0){
+        if (cartItems != null && cartItems.size() > 0) {
             cartView.setVisibility(View.VISIBLE);
-            Double cost = 0.0;
+            double cost = 0.0;
             int quantity = 0;
-            for(CartItem cartItem:cartItems){
-                cost = cost+(cartItem.getPrice()*cartItem.getQuantity());
-                quantity = quantity+cartItem.getQuantity();
+            for (CartItem cartItem : cartItems) {
+                cost = cost + (cartItem.getPrice() * cartItem.getQuantity());
+                quantity = quantity + cartItem.getQuantity();
             }
             tCartQuantity.setText(String.valueOf(quantity));
-            tTotalCost.setText(getString(R.string.rupee_symbol)+String.valueOf(cost));
-        }else{
+            tTotalCost.setText(getString(R.string.rupee_symbol) + String.valueOf(cost));
+        } else {
             cartView.setVisibility(View.GONE);
             tCartQuantity.setText("0");
-            tTotalCost.setText(getString(R.string.rupee_symbol)+"0");
+            tTotalCost.setText(getString(R.string.rupee_symbol) + "0");
         }
     }
 
@@ -153,3 +143,4 @@ public class IndividualActivity extends AppCompatActivity implements View.OnClic
         super.onDestroy();
     }
 }
+
