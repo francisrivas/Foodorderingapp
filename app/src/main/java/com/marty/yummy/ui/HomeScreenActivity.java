@@ -47,7 +47,9 @@ public class HomeScreenActivity extends AppCompatActivity implements java.util.O
     AppCompatButton bCart;
     LayoutAnimationController controller;
     ImageView infoImage;
-    TextView tInfo,tTotalCost,tCartQuantity;
+    TextView tInfo;
+    tTotalCost; 
+    tCartQuantity;
     Toolbar cartView;
     public static final String INTENT_UPDATE_FOOD = "UPDATE_FOOD";
     public static final String INTENT_UPDATE_LIST = "UPDATE_LIST";
