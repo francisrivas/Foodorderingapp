@@ -34,7 +34,10 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.Recycl
     public class RecyclerViewHolders extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private AppCompatImageView iDelete;
-        private TextView tName,tPrice,tTotalPrice,tQuantity;
+        private TextView tName; 
+        private tPrice; 
+        private tTotalPrice; 
+        private tQuantity;
 
 
         RecyclerViewHolders(View itemView) {
