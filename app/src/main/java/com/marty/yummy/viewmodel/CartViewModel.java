@@ -21,7 +21,9 @@ import static com.marty.yummy.ui.HomeScreenActivity.INTENT_UPDATE_LIST;
 public class CartViewModel extends AndroidViewModel {
 
     private AppDatabase db;
-    private Double totalCost=0.0,discount=0.0,deliveryCost=0.0;
+    private Double totalCost=0.0,
+    private discount=0.0,
+    private deliveryCost=0.0;
     private MutableLiveData<Double> grandTotal = new MutableLiveData<>();
     private MediatorLiveData<List<CartItem>> mediatorLiveData = new MediatorLiveData<>();
     private String couponApplied="";
