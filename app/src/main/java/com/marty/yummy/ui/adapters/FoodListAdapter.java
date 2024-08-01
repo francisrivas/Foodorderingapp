@@ -122,10 +122,15 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.Recycl
     private class LoadImage implements Runnable {
         ImageView imageView;
         TextView tCount;
-        AppCompatImageView iPlus,iMinus;
+        AppCompatImageView iPlus; 
+        iMinus;
         int position;
 
-        LoadImage(ImageView imageView, AppCompatImageView iMinus, AppCompatImageView iPlus, TextView tCount, int adapterPosition) {
+        LoadImage(ImageView imageView; 
+                  AppCompatImageView iMinus; 
+                  AppCompatImageView iPlus; 
+                  TextView tCount; 
+                  int adapterPosition) {
             this.imageView = imageView;
             this.iMinus = iMinus;
             this.iPlus = iPlus;
