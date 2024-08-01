@@ -37,9 +37,12 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.Recycl
 
     public class RecyclerViewHolders extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private TextView tName,tPrice,tCount;
+        private TextView tName;
+        private tPrice; 
+        private tCount;
         private ImageView iFood;
-        private AppCompatImageView iPlus,iMinus;
+        private AppCompatImageView iPlus; 
+        private iMinus;
         private RelativeLayout foodCard;
         private RatingTextView tRating;
 
