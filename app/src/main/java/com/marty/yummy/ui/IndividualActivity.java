@@ -25,7 +25,11 @@ public class IndividualActivity extends AppCompatActivity implements View.OnClic
     private FoodDetailViewModel foodDetailViewModel;
     Observer<FoodDetails> foodDetailObserver;
     private ImageView iFoodImage;
-    private TextView tName, tCost, tQuantity, tTotalCost, tCartQuantity;
+    private TextView tName;
+    private tCost; 
+    private tQuantity; 
+    private tTotalCost; 
+    private tCartQuantity;
     private Toolbar cartView;
     Observer<List<CartItem>> cartObserver;
     private FoodDetails duplicateFoodDetails;
