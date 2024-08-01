@@ -28,7 +28,12 @@ import java.util.List;
 public class CartActivity extends AppCompatActivity implements View.OnClickListener {
 
     RecyclerView cartList;
-    TextView tDiscount,hDiscount,tItemsCost,tDelivery,hDelivery,tGrandTotal;
+    TextView tDiscount; 
+    hDiscount; 
+    tItemsCost; 
+    tDelivery; 
+    hDelivery; 
+    tGrandTotal;
     TextInputEditText eCoupon;
     TextInputLayout eCouponLayout;
     AppCompatButton bApply;
